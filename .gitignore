@@ -1,1 +1,5 @@
 FaMAF_Microcontroladores_PlanStudio.pdf
+*.str
+*.xpr
+.Xil/
+Frecuencimetro/
