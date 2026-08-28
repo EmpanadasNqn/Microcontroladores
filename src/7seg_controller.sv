@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
 module disp7seg_controller(
-    input clk,
-    input [3:0] bcd_dig [0:3],      // bcd_digX[3:0] -> bcd value
-    input [3:0] blank_dig,          // blank_dig[X] -> 1 = digit blank /// 0 = digit enable
-    output [7:0] seg,
-    output [3:0] dig_en
+    input logic clk,
+    input logic [3:0][3:0] bcd_dig,     // bcd_digX[3:0] -> bcd value /// 4 buses de 4 bits cada uno
+    input logic [3:0] blank_dig,        // blank_dig[X] -> 1 = digit blank /// 0 = digit enable
+    output logic [7:0] seg,
+    output logic [3:0] dig_en
     );
 
     logic [4:0] cnt;

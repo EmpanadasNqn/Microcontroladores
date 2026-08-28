@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module BCD_Count(
-    input logic reset,
+    input logic rst,
     input logic en,
     input logic clk,
     input logic D_carry,    // carry in
