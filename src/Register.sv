@@ -8,4 +8,9 @@ module Register(
     output logic [3:0] Q
     );
     
+    always_ff @(posedge clk) begin
+        if (rst) Q <= 4'b0000;
+        else if (D_latchEN) Q <= D;
+    end
+
 endmodule
