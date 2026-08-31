@@ -2,8 +2,8 @@
 
 module Frequency_meter(
     input logic clk,
-    input logic rst,
-    input logic freqIn,
+    input logic rst,            // Lo asigno a un boton?
+    input logic freqIn,         // Yyyy esto ya nose, uno de GPIO?
     output logic [7:0] D0_SEG,
     output logic [3:0] D0_AN
     );
