@@ -8,17 +8,17 @@ module Frequency_meter(
     output logic [3:0] D0_AN
     );
     
-    logic ts1;
-    // Generador del TS1
+    logic tms1;
+    // Generador del tick cada 1ms
     BaseTime1ms timer(  .clk(clk),
                         .rst(rst),
-                        .tick_out(ts1));
+                        .tick_out(tms1));
     
     logic cnt_en, cnt_rst, l_en;
     // Controladora contadores y latch
     FSM_Control control(.clk(clk),
                         .rst(rst),
-                        .tick_1ms(ts1),
+                        .tick_1ms(tms1),
                         .cnt_en(cnt_en),
                         .cnt_rst(cnt_rst),
                         .latch_en(l_en));
@@ -35,7 +35,7 @@ module Frequency_meter(
                             .Q3_m(q_m));
     
     logic [3:0] d_u, d_d, d_c, d_m;
-    // El "Latch"
+    // Los "Latch"
     Register reg_u( .clk(clk),
                     .rst(rst),
                     .D_latchEN(l_en),
@@ -60,7 +60,7 @@ module Frequency_meter(
                     .D(q_m),
                     .Q(d_m));
 
-    logic [13:0] cnt_display;
+    logic [13:0] cnt_display = 'b0;
     // Deco de BCD a 7seg
     disp7seg_controller dispA(  .clk(cnt_display[13]),
                                 .bcd_dig({d_m, d_c, d_d, d_u}), // Aca se deben conectar los BCD de salida del LATCH

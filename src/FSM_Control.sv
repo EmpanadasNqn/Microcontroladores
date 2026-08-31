@@ -12,6 +12,7 @@ module FSM_Control(
     enum {S_MEDICION, S_CAPTURA, S_REINICIO} state, next_state;
 
     // Contador de milisegundos para medir la ventana de 1 segundo (0 a 999)
+    // Esto no sigue el enunciado pero ya fue por algo sera
     // log2(1000) = 9.96 -> Necesitamos 10 bits.
     logic [9:0] ms_count;
     logic reset_ms; // Señal de control interna

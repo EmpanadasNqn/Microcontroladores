@@ -1,9 +1,9 @@
 `timescale 1ns / 1ps
 
 module BaseTime1ms(
-    input logic clk,       // 100MHz CLK Input
-    input logic rst,          // Sync reset
-    output logic tick_out     // 1ms Tick signal
+    input logic clk,        // 100MHz CLK Input
+    input logic rst,        // Sync reset
+    output logic tick_out   // 1ms Tick signal
     );
 
     logic [16:0] cnt;
