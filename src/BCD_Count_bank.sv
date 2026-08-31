@@ -8,6 +8,9 @@ module BCD_Count_bank(
     output logic [3:0] Q0_u, Q1_d, Q2_c, Q3_m
     );
     
+    // tengo un enable y un carry_in por separado, por lo que no
+    // debo seguir el enunciado de conectar el carry_out al enable
+    // del siguiente modulo
     logic carryA, carryB, carryC;
     BCD_Count count_u(  .rst(D_rst),
                         .en(D_en),

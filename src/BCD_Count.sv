@@ -8,5 +8,14 @@ module BCD_Count(
     output logic Q_carry,   // carry out
     output logic [3:0] Q_count
     );
+
+    assign Q_carry = (Q_count >= 4'b1001) && (en && D_carry);
     
+    always_ff @(posedge clk)
+        if (rst) Q_count <= 4'b0000;
+        else if (en && D_carry) begin
+            if (Q_count >= 4'b1001) Q_count <= 4'b0000;
+            else Q_count <= Q_count + 4'b0001;
+        end
+
 endmodule
