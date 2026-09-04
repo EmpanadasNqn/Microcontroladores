@@ -5,7 +5,8 @@ module Frequency_meter(
     input logic rst,            // Lo asigno a un boton?
     input logic freqIn,         // Yyyy esto ya nose, uno de GPIO?
     output logic [7:0] D0_SEG,
-    output logic [3:0] D0_AN
+    output logic [3:0] D0_AN,
+    output logic [15:0] led
     );
     
     logic tms1;
@@ -68,7 +69,13 @@ module Frequency_meter(
                                 .seg(D0_SEG),
                                 .dig_en(D0_AN));
 
-    // El cambio del 13vo bit se hace aprox a 1.5kHz
+    // El cambio del bit 13 se hace aprox a 1.5kHz
     always @(posedge clk) cnt_display <= cnt_display + 1;
+
+    // Leds moviendose
+    leds disp16Leds(.clk(clk),
+                    .tick(tms1),
+                    .rst(rst),
+                    .ledIn(led));
 
 endmodule
