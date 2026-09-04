@@ -3,7 +3,7 @@
 module Frequency_meter(
     input logic clk,
     input logic rst,            // Lo asigno a un boton?
-    input logic freqIn,         // Yyyy esto ya nose, uno de GPIO?
+    input logic servo0,         //freqIn
     output logic [7:0] D0_SEG,
     output logic [3:0] D0_AN,
     output logic [15:0] led
@@ -27,7 +27,7 @@ module Frequency_meter(
     logic freq_pulse;
     // Sincroniza la señal a medir, generando un pulso en cada clk
     Edge_Detector edge_det( .clk(clk),
-                            .async_in(freqIn),
+                            .async_in(servo0),
                             .pulse_out(freq_pulse));
     
     logic [3:0] q_u, q_d, q_c, q_m;
