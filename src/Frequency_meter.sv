@@ -24,10 +24,16 @@ module Frequency_meter(
                         .cnt_rst(cnt_rst),
                         .latch_en(l_en));
     
+    logic freq_pulse;
+    // Sincroniza la señal a medir, generando un pulso en cada clk
+    Edge_Detector edge_det( .clk(clk),
+                            .async_in(freqIn),
+                            .pulse_out(freq_pulse));
+    
     logic [3:0] q_u, q_d, q_c, q_m;
     // Contadores unidad, decimal, centesima, milesima
     BCD_Count_bank count(   .clk(clk),
-                            .D_freq(freqIn),
+                            .D_freq(freq_pulse),
                             .D_rst(cnt_rst),
                             .D_en(cnt_en),
                             .Q0_u(q_u),
